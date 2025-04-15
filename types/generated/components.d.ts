@@ -1,75 +1,222 @@
-import type { Struct, Schema } from '@strapi/strapi';
+import type { Schema, Struct } from '@strapi/strapi';
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
+export interface ComponentsFooterLink extends Struct.ComponentSchema {
+  collectionName: 'components_components_footer_links';
   info: {
-    displayName: 'Slider';
-    icon: 'address-book';
     description: '';
+    displayName: 'link';
   };
   attributes: {
-    files: Schema.Attribute.Media<'images', true>;
+    externalLink: Schema.Attribute.Boolean;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface SharedSeo extends Struct.ComponentSchema {
-  collectionName: 'components_shared_seos';
+export interface ProjectsComponentsImageAndTextSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_projects_components_image_and_text_sections';
   info: {
-    name: 'Seo';
-    icon: 'allergies';
-    displayName: 'Seo';
-    description: '';
+    displayName: 'imageAndTextSection';
   };
   attributes: {
-    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    shareImage: Schema.Attribute.Media<'images'>;
-  };
-}
-
-export interface SharedRichText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_rich_texts';
-  info: {
-    displayName: 'Rich text';
-    icon: 'align-justify';
-    description: '';
-  };
-  attributes: {
-    body: Schema.Attribute.RichText;
-  };
-}
-
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isGrayBackground: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    isImageOnLeft: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    paragraph1: Schema.Attribute.Text;
+    paragraph2: Schema.Attribute.Text;
+    paragraph3: Schema.Attribute.Text;
     title: Schema.Attribute.String;
-    body: Schema.Attribute.Text;
   };
 }
 
-export interface SharedMedia extends Struct.ComponentSchema {
-  collectionName: 'components_shared_media';
+export interface ProjectsComponentsImageSection extends Struct.ComponentSchema {
+  collectionName: 'components_projects_components_image_sections';
   info: {
-    displayName: 'Media';
-    icon: 'file-video';
+    displayName: 'imageSection';
   };
   attributes: {
-    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isGrayBackground: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ProjectsComponentsStudent extends Struct.ComponentSchema {
+  collectionName: 'components_projects_components_students';
+  info: {
+    displayName: 'student';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+  };
+}
+
+export interface ProjectsComponentsTextSection extends Struct.ComponentSchema {
+  collectionName: 'components_projects_components_text_sections';
+  info: {
+    displayName: 'textSection';
+  };
+  attributes: {
+    isGrayBackground: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    paragraph1: Schema.Attribute.Text;
+    paragraph2: Schema.Attribute.Text;
+    paragraph3: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ProjectsComponentsTwoImagesSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_projects_components_two_images_sections';
+  info: {
+    displayName: 'twoImagesSection';
+  };
+  attributes: {
+    image1: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    image2: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isGrayBackground: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ProjectsComponentsVideoSection extends Struct.ComponentSchema {
+  collectionName: 'components_projects_components_video_sections';
+  info: {
+    displayName: 'videoSection';
+  };
+  attributes: {
+    isGrayBackground: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    video: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageAtelierProjet extends Struct.ComponentSchema {
+  collectionName: 'components_sections_homepage_atelier_projets';
+  info: {
+    description: '';
+    displayName: 'atelierProjet';
+  };
+  attributes: {
+    paragraph: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageCarouselSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_homepage_carousel_sections';
+  info: {
+    description: '';
+    displayName: 'carousel';
+  };
+  attributes: {
+    carouselImages: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageCollabSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_homepage_collab_sections';
+  info: {
+    description: '';
+    displayName: 'collaboration';
+  };
+  attributes: {
+    cta: Schema.Attribute.Component<'components.footer-link', false> &
+      Schema.Attribute.Required;
+    labelCtaDownloadPressArticle: Schema.Attribute.String &
+      Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    pdfUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageDominiqueRenaudSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_homepage_dominique_renaud_sections';
+  info: {
+    description: '';
+    displayName: 'dominiqueRenaud';
+    icon: '';
+  };
+  attributes: {
+    citation: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    paragraph: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageHeroHeader extends Struct.ComponentSchema {
+  collectionName: 'components_sections_hero_headers';
+  info: {
+    description: '';
+    displayName: 'heroHeader';
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    cta: Schema.Attribute.Component<'components.footer-link', false> &
+      Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageMdrDetails extends Struct.ComponentSchema {
+  collectionName: 'components_sections_homepage_mdr_details';
+  info: {
+    displayName: 'mdrDetails';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    paragraph: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomepageProjectFolio extends Struct.ComponentSchema {
+  collectionName: 'components_sections_homepage_project_folios';
+  info: {
+    displayName: 'projectFolio';
+  };
+  attributes: {
+    paragraph: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'shared.slider': SharedSlider;
-      'shared.seo': SharedSeo;
-      'shared.rich-text': SharedRichText;
-      'shared.quote': SharedQuote;
-      'shared.media': SharedMedia;
+      'components.footer-link': ComponentsFooterLink;
+      'projects-components.image-and-text-section': ProjectsComponentsImageAndTextSection;
+      'projects-components.image-section': ProjectsComponentsImageSection;
+      'projects-components.student': ProjectsComponentsStudent;
+      'projects-components.text-section': ProjectsComponentsTextSection;
+      'projects-components.two-images-section': ProjectsComponentsTwoImagesSection;
+      'projects-components.video-section': ProjectsComponentsVideoSection;
+      'sections-homepage.atelier-projet': SectionsHomepageAtelierProjet;
+      'sections-homepage.carousel-section': SectionsHomepageCarouselSection;
+      'sections-homepage.collab-section': SectionsHomepageCollabSection;
+      'sections-homepage.dominique-renaud-section': SectionsHomepageDominiqueRenaudSection;
+      'sections-homepage.hero-header': SectionsHomepageHeroHeader;
+      'sections-homepage.mdr-details': SectionsHomepageMdrDetails;
+      'sections-homepage.project-folio': SectionsHomepageProjectFolio;
     }
   }
 }
